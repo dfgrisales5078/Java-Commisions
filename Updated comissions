@@ -1,25 +1,17 @@
-//Diego Grisales
-//Monthly commission calculator by employee - Celldistributions.Corp
-//09/25/2020
-
 import java.util.Scanner;
 
-public class Commissions {
-	
-	Commissions() {
+public class Comissions2 {
+
+	public static void main(String[] args) {
 		
 		System.out.println("Monthly commission calculator by employee \nPlease enter the following information. ");
 		
 		Scanner inp = new Scanner(System.in);
 		
 		String employee;
-		try {
-			System.out.print("\nEmployee's name: ");
-			employee = inp.next();
-		}
-		catch (Exception e) {
-			employee = inp.nextLine(); // method to read double from user.
-		}
+		System.out.print("\nEmployee's name: ");
+		employee = inp.next();
+		
 		double autopay;
 		System.out.print("\nNumber of autopay assigned: ");
 		autopay = inp.nextDouble();
@@ -38,14 +30,14 @@ public class Commissions {
 		goal60 = inp.next(".").charAt(0);
 		
 		if (goal60 == 'a') {
-			newAcct60 = newAcct60 * 4;
+			newAcct60 = newAcct60 * 5;
 		}
 		else if (goal60 == 'b') {
-			newAcct60 = newAcct60 * 6;
+			newAcct60 = newAcct60 * 7;
 		} 
 		
 		double newAcct;
-		System.out.print("NEW accounts sold with other plans: ");
+		System.out.print("NEW accounts sold with $50 plans or below: ");
 		newAcct = inp.nextDouble();
 		
 		char goal; 
@@ -53,7 +45,7 @@ public class Commissions {
 		goal = inp.next().charAt(0);
 		
 		if (goal == 'a') {
-			newAcct = newAcct * 3;
+			newAcct = newAcct * 4;
 		}
 		else if (goal == 'b') {
 			newAcct = newAcct * 5;
@@ -64,10 +56,15 @@ public class Commissions {
 		upgrade = inp.nextDouble();
 		upgrade = upgrade * 5;
 		
+		double Linkzone; 
+		System.out.print("Number of Linkzone's sold: ");
+		Linkzone = inp.nextDouble();
+		Linkzone = Linkzone * 5;
+		
 		double iot;
-		System.out.print("Number of IOTs sold: ");
+		System.out.print("Number of other IOTs sold: ");
 		iot = inp.nextDouble();
-		iot = iot * 5;
+		iot = iot * 3;
 		
 		double accessories;
 		System.out.print("Amount in dollars sold in accessories, (example $1,000 = 1000): ");
@@ -87,12 +84,12 @@ public class Commissions {
 			accessories = accessories * .18;
 		}
 		
-		double monthTotal = autopay + reactAndByod + newAcct60 + newAcct + upgrade + iot + accessories;
+		double monthTotal = autopay + reactAndByod + newAcct60 + newAcct + upgrade + iot + Linkzone + accessories;
 		
-		System.out.println("\nRetention comissions for past months: ");
+		System.out.println("\nRetention comissions for past months (phones and IOT)");
 		
 		double storeSales1;
-		System.out.print("Number of phones with NEW ACCOUNTS on the first month (store total): ");
+		System.out.print("Number of NEW ACCOUNTS on the first month (store total): ");
 		storeSales1 = inp.nextDouble();
 		
 		double retention1;
@@ -107,9 +104,7 @@ public class Commissions {
 		double month1; 
 		month1 = retention1 * sales1 * 1.00;
 		
-		
-		
-		/*
+
 		double storeSales2;
 		System.out.print("\nNumber of phones sold with NEW accounts on the second month: ");
 		storeSales2 = inp.nextDouble();
@@ -160,7 +155,7 @@ public class Commissions {
 		double month4; 
 		month4 = retention4 * sales4;
 		
-		
+		/*
 		double storeSales5;
 		System.out.print("\nNumber of phones sold with NEW accounts on the fifth month: ");
 		storeSales5 = inp.nextDouble();
@@ -178,30 +173,26 @@ public class Commissions {
 		month5 = retention5 * sales5; */
 		inp.close();
 		
-		double totalRetention = month1; //+ month2 + month3 + month4 + month5;
+		double totalRetention = month1 + month2 + month3 + month4; //+ month5;
 		
 		System.out.println("\n" + employee + "'s commissions: \n\nAutopay: $" + autopay + "\nReactivations/BYOD: $" 
-				+ reactAndByod + "\nNew $60 plan accounts: $" + newAcct60 + "\nNew $50 plan accounts: $" +
-				newAcct + "\nUpgrades: $" + upgrade + "\nIOT: $" + iot + "\nAccessories: $" + accessories);
+				+ reactAndByod + "\nNew $60 plan accounts: $" + newAcct60 + "\nNew $50 plan or below accounts: $" +
+				newAcct + "\nUpgrades: $" + upgrade + "\nLinkzone: $" + Linkzone + "\nIOT: $" + iot + "\nAccessories: $" + accessories);
 		
 		System.out.printf("\nTotal commissions for this month: $" + "%.2f", monthTotal);
-		
-		System.out.printf("\nRetention for the first month is: $" /*+ "\nRetention for the second month is: $" 
+		System.out.println(" ");
+		System.out.printf("\nRetention for the first month is: $" + month1 + "\nRetention for the second month is: $" 
 				+ month2 + "\nRetention for the third month is: $" + month3 + "\nRetention for the fourth month is: $" 
-				+ month4 + "\nRetention for the fifth month is: $" + month5 + "\n" + "Total retention for past 5 months: $"
-		 		*/ + "%.2f", totalRetention);  
+				+ month4 + /*"\nRetention for the fifth month is: $" + month5 ++*/ "\n"  + "Total retention for past months: $"
+		 		 + totalRetention);  
 		
 		double finalCommissions;
 		finalCommissions = monthTotal + totalRetention;
-		System.out.printf("\n" + employee + "'s total commissions for this month plus retention for past months: $" 
+		System.out.println("\n");
+		System.out.printf(employee + "'s total commissions for this month including retention for past months: $" 
 		+ "%.2f", finalCommissions);
 		
 		}
 
-	public static void main(String[] args) {
-		
-		Commissions obj;
-		obj = new Commissions();
-		System.out.println("\n\n\n\n" + obj);
-	}
 }
+
